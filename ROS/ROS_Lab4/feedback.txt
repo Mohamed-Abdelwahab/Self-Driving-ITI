@@ -1,0 +1,15 @@
+Task 1:
+arguments=['1.8', '.5', '1', '-1.57', '0', '0', 'base_footprint', 'imu_link'],
+arguments=['1.8', '.03', '1', '0', '0', '0', 'base_footprint', 'zed2_link'],
+
+Comment : right direction is negative
+
+
+
+Task2:
+Great work . That was almost perfect.
+Comment: Your pitch sequence is : - pi/6 -> 0 -> pi/6 -> -pi/6
+There is a sudden change from  pi/6 to -pi/6, A smooth change would be better.
+For example:
+-pi/6 -> 0. -> pi/6 -> 0 -> -pi/6 and so..
+
