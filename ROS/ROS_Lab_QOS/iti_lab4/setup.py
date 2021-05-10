@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
         'node1 = iti_lab4.node1:main',
         'node2 = iti_lab4.node2:main',
+        'client_node = iti_lab4.client_node:main',
         ],
     },
 )
