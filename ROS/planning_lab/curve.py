@@ -9,7 +9,6 @@ from example_interfaces.msg import String
 from functions import menger_curvature
 
 
-
 class my_node(Node):
     def __init__(self):
         super().__init__("curve_node")
