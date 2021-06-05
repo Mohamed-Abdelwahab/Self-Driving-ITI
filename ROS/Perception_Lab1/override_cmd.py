@@ -51,8 +51,8 @@ class Control(Node):
             min_value = min (min(laser_data[0:20]),min(laser_data[-20:-1]))
             #print(min_value)
 
-            # stop if min distance = .7
-            if min_value < .7:
+            # stop if min distance = .5
+            if min_value < .5:
                 control.linear.x = 0.0 
                 control.angular.z = w_z
                 self.pub.publish(control)
@@ -68,9 +68,27 @@ class Control(Node):
                 self.pub.publish(control)
             
         else:
-            control.linear.x = v_x
-            control.angular.y = w_z
-            self.pub.publish(control)
+        
+            # Handle back obtacle 
+            # get min distance in range 160 -> 200 deg 
+            min_value = min (min(laser_data[160:180]),min(laser_data[180:200]))
+            #print(min_value)
+
+            # stop if min distance = .5
+            if min_value < .5:
+                control.linear.x = 0.0 
+                control.angular.z = w_z
+                self.pub.publish(control)
+            # move with normal speed if your distance > 3 m 
+            elif min_value > 3.0 :
+                control.linear.x = v_x
+                control.angular.z = w_z
+                self.pub.publish(control)
+            # slow down if 3 > distance to obstacle > .5
+            elif min_value > .5 :
+                control.linear.x = (v_x * min_value) / 3.0
+                control.angular.z = w_z
+                self.pub.publish(control)
 
     def key_callback(self,twist):
 
